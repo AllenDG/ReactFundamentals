@@ -1,3 +1,13 @@
+import { LoginForm } from "./components/LoginForm";
+
 export default function App() {
-  return <div></div>;
+  window.addEventListener("resize", (event) => {
+    console.log(window.innerHeight, window.innerWidth);
+  });
+
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 }
