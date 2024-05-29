@@ -1,13 +1,58 @@
-import { RegisterForm } from "./components/RegisterForm";
+import { useState } from "react";
+import { UserDetails } from "./components/UserDetails";
 
 export default function App() {
-  window.addEventListener("resize", (event) => {
-    console.log(window.innerHeight, window.innerWidth);
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: "allen",
+      email: "allen@gmail.com",
+    },
+    {
+      id: 2,
+      username: "jedyne",
+      email: "jedyne@gmail.com",
+    },
+  ]);
 
   return (
     <div>
-      <RegisterForm />
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            id="user"
+            value={username}
+            onChange={(event) => {
+              setUsername(event.target.value);
+            }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            id="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
+        <button>Add User</button>
+      </form>
+      <br />
+      {users.map((user) => (
+        <UserDetails key={user.id} user={user} setUsers={setUsers} />
+      ))}
     </div>
   );
 }
