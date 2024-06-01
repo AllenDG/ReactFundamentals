@@ -1,67 +1,19 @@
-import { useState } from "react";
-import { UserDetails } from "./components/UserDetails";
+import { useState, useEffect } from "react";
 
 export default function App() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [counter, setCounter] = useState(3);
+  const [counter, setCounter] = useState(0);
+  const [sync, setSync] = useState(false);
 
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      username: "allen",
-      email: "allen@gmail.com",
-    },
-    {
-      id: 2,
-      username: "jedyne",
-      email: "jedyne@gmail.com",
-    },
-  ]);
+  useEffect(() => {
+    console.log("render...");
+    document.title = "Fundamental of React " + counter;
+  }, [sync, counter]);
 
   return (
     <div>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const newUser = {
-            id: counter,
-            username,
-            email,
-          };
-          setCounter((currenCounter) => currenCounter + 1);
-          setUsers((currenUserState) => [...currenUserState, newUser]);
-        }}
-      >
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            name="username"
-            id="user"
-            value={username}
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            id="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <button>Add User</button>
-      </form>
-      <br />
-      {users.map((user) => (
-        <UserDetails key={user.id} user={user} setUsers={setUsers} />
-      ))}
+      <div>You clicked the button {counter} times</div>
+      <button onClick={() => setCounter((count) => count + 1)}>Click me</button>
+      <button onClick={() => setSync((current) => !current)}>Sync</button>
     </div>
   );
 }
