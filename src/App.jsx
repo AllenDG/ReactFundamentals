@@ -6,7 +6,7 @@ export default function App() {
 
   useEffect(() => {
     console.log("render...");
-    document.title = "Fundamental of React " + counter;
+    document.title = "Fundamental of React ";
   }, [sync, counter]);
 
   return (
