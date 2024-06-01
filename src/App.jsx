@@ -4,6 +4,8 @@ import { UserDetails } from "./components/UserDetails";
 export default function App() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [counter, setCounter] = useState(3);
+
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -22,6 +24,13 @@ export default function App() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          const newUser = {
+            id: counter,
+            username,
+            email,
+          };
+          setCounter((currenCounter) => currenCounter + 1);
+          setUsers((currenUserState) => [...currenUserState, newUser]);
         }}
       >
         <div>
