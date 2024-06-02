@@ -1,4 +1,26 @@
+import { useEffect } from "react";
+
 export function LoginForm() {
+  useEffect(() => {
+    const resizeEventHandler = (event) => {
+      console.log("Window/Viewport Resized!");
+    };
+    const handleDocumentClick = () => {
+      console.log("Clicked Document!");
+    };
+
+    window.addEventListener("resize", resizeEventHandler);
+    document.addEventListener("click", handleDocumentClick);
+
+    //cleanup Function
+    return () => {
+      console.log("Unmounting LoginForm");
+      console.log("Removing Resize Event Listener");
+      window.removeEventListener("resize", resizeEventHandler);
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
   return (
     <form
       onSubmit={(event) => {
