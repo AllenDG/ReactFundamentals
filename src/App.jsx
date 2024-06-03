@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
-import { LoginForm } from "./components/LoginForm";
+import { PostContainer } from "./components/PostContainer";
+import { UserContext } from "./utils/contexts/UserContext";
 
 export default function App() {
-  const [toggle, setToggle] = useState(false);
-
   return (
-    <div>
-      <button onClick={() => setToggle((currenState) => !currenState)}>
-        Toggle
-      </button>
-      {toggle && <LoginForm />}
-    </div>
+    <UserContext.Provider
+      value={{
+        id: 1,
+        username: "allenDG",
+        email: "AllenDG@Gmail.com",
+        displayname: "AllenDev",
+      }}
+    >
+      <div>
+        <PostContainer />
+      </div>
+    </UserContext.Provider>
   );
 }
