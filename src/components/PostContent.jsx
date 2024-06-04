@@ -7,7 +7,10 @@ export function PostContent({ data }) {
 
   return (
     <div>
-      <PostContentButton data={data} />
+      <div>
+        <span>Post Content</span>
+      </div>
+      <PostContentButton />
       {userContextData.email}
     </div>
   );
